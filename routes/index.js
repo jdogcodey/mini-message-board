@@ -18,5 +18,8 @@ const messages = [
 indexRouter.get("/", (req, res) => {
   res.render("../views/index", { messages: messages });
 });
+indexRouter.get("/new", (req, res) => {
+  res.render("../views/form");
+});
 
 module.exports = indexRouter;
