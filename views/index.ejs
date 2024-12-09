@@ -6,6 +6,11 @@
     <title>Homepage</title>
 </head>
 <body>
-    <p>Test test test</p>
+   <% messages.forEach((message) => { %>
+    <% const user = message.user%>
+    <% const text=message.text%>
+    <% const added=message.added%>
+        <%- include('message', { user: user, text:text, added:added})%>
+   <% })%>
 </body>
 </html>
