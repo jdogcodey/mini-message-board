@@ -15,7 +15,7 @@ const messages = [
   },
 ];
 
-indexRouter.get("/viewmessage/:messageId", (req, res) => {
+indexRouter.get("/view-message/:messageId", (req, res) => {
   const arrayPosition = req.params.messageId;
   const messageToView = messages[arrayPosition];
   const user = messageToView.user;
