@@ -15,8 +15,8 @@ const messages = [
   },
 ];
 
-indexRouter.get("/", (req, res) => {
-  res.render("../views/index", { messages: messages });
+indexRouter.get("/viewmessage/:messageId", (req, res) => {
+  // Write code here for the 'open' button next to each message
 });
 indexRouter.get("/new", (req, res) => {
   res.render("../views/form");
@@ -26,6 +26,9 @@ indexRouter.post("/new", (req, res) => {
   const newMessage = req.body.message;
   messages.push({ text: newMessage, user: userName, added: new Date() });
   res.redirect("/");
+});
+indexRouter.get("/", (req, res) => {
+  res.render("../views/index", { messages: messages });
 });
 
 module.exports = indexRouter;

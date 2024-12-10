@@ -6,11 +6,12 @@
     <title>Homepage</title>
 </head>
 <body>
-   <% messages.forEach((message) => { %>
+   <% messages.forEach((message, index) => { %>
     <% const user = message.user%>
     <% const text=message.text%>
     <% const added=message.added%>
         <%- include('message', { user: user, text:text, added:added})%>
+    <a href="./view-message/<%index%>">Open Message</a>
    <% })%>
    <a href="./new">Post new message</a>
 </body>
