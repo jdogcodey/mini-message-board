@@ -16,7 +16,12 @@ const messages = [
 ];
 
 indexRouter.get("/viewmessage/:messageId", (req, res) => {
-  // Write code here for the 'open' button next to each message
+  const arrayPosition = req.params.messageId;
+  const messageToView = messages[arrayPosition];
+  const user = messageToView.user;
+  const text = messageToView.text;
+  const added = messageToView.added;
+  res.render("../views/view-message", { user: user, text: text, added: added });
 });
 indexRouter.get("/new", (req, res) => {
   res.render("../views/form");
