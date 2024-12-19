@@ -35,12 +35,16 @@ function renderNew(req, res) {
   res.render("../views/form");
 }
 
-function viewMessage(req, res) {
+async function viewMessage(req, res) {
   const arrayPosition = req.params.messageId;
-  const messageToView = db[arrayPosition];
-  const user = messageToView.user;
-  const text = messageToView.text;
-  const added = messageToView.added;
+  //   const messageToView = db[arrayPosition];
+  //   const user = messageToView.user;
+  //   const text = messageToView.text;
+  //   const added = messageToView.added;
+  const messageToShow = await newDB.viewMessageByID(arrayPosition);
+  const user = messageToShow[0].user;
+  const text = messageToShow[0].text;
+  const added = messageToShow[0].added;
   res.render("../views/view-message", { user: user, text: text, added: added });
 }
 

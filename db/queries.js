@@ -12,4 +12,12 @@ async function addMessageToDB(user, text) {
   ]);
 }
 
-module.exports = { getAllMessages, addMessageToDB };
+async function viewMessageByID(id) {
+  const { rows } = await pool.query("SELECT * FROM messages WHERE id = ($1)", [
+    id,
+  ]);
+  console.log(rows);
+  return rows;
+}
+
+module.exports = { getAllMessages, addMessageToDB, viewMessageByID };
