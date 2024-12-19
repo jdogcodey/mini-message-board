@@ -9,12 +9,12 @@ const password = process.env.DB_PASSWORD;
 const SQL = `
 CREATE TABLE IF NOT EXISTS messages (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  user VARCHAR ( 255 ),
+  "user" VARCHAR ( 255 ),
   text VARCHAR ( 255 ), 
   added TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO messages (text, user) 
+INSERT INTO messages (text, "user") 
 VALUES
   ('Amando', 'Hi there!'),
   ('Charles', 'Hi world!');
@@ -23,7 +23,7 @@ VALUES
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString: `postgresql://${user}:${password}@localhost:5432/mini-message`,
+    connectionString: `postgresql://${user}:${password}@localhost:5432/mini_message`,
   });
   await client.connect();
   await client.query(SQL);
@@ -32,5 +32,3 @@ async function main() {
 }
 
 main();
-
-module.exports = main;
