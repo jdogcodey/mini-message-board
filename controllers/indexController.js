@@ -1,3 +1,5 @@
+const newDB = require("../db/queries");
+
 const db = [
   {
     text: "Hi there!",
@@ -11,8 +13,14 @@ const db = [
   },
 ];
 
-function renderHomepage(req, res) {
-  res.render("../views/index", { messages: db });
+async function renderHomepage(req, res) {
+  const messages = await requestAllMessages();
+  res.render("../views/index", { messages: messages });
+}
+
+async function requestAllMessages() {
+  const messages = await newDB.getAllMessages();
+  return messages;
 }
 
 function addUser(req, res) {
