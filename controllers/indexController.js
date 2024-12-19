@@ -23,10 +23,11 @@ async function requestAllMessages() {
   return messages;
 }
 
-function addUser(req, res) {
+async function addMessage(req, res) {
   const userName = req.body.author;
   const newMessage = req.body.message;
-  db.push({ text: newMessage, user: userName, added: new Date() });
+  //   db.push({ text: newMessage, user: userName, added: new Date() });
+  await newDB.addMessageToDB(userName, newMessage);
   res.redirect("/");
 }
 
@@ -43,4 +44,9 @@ function viewMessage(req, res) {
   res.render("../views/view-message", { user: user, text: text, added: added });
 }
 
-module.exports = { renderHomepage, addUser, renderNew, viewMessage };
+module.exports = {
+  renderHomepage,
+  addMessage,
+  renderNew,
+  viewMessage,
+};

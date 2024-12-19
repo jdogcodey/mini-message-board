@@ -5,4 +5,11 @@ async function getAllMessages() {
   return rows;
 }
 
-module.exports = { getAllMessages };
+async function addMessageToDB(user, text) {
+  await pool.query(`INSERT INTO messages ("user", text) VALUES ($1, $2)`, [
+    user,
+    text,
+  ]);
+}
+
+module.exports = { getAllMessages, addMessageToDB };
