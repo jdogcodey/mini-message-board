@@ -1,17 +1,4 @@
-const newDB = require("../db/queries");
-
-const db = [
-  {
-    text: "Hi there!",
-    user: "Amando",
-    added: new Date(),
-  },
-  {
-    text: "Hello World!",
-    user: "Charles",
-    added: new Date(),
-  },
-];
+const db = require("../db/queries");
 
 async function renderHomepage(req, res) {
   const messages = await requestAllMessages();
@@ -19,7 +6,7 @@ async function renderHomepage(req, res) {
 }
 
 async function requestAllMessages() {
-  const messages = await newDB.getAllMessages();
+  const messages = await db.getAllMessages();
   return messages;
 }
 
@@ -27,7 +14,7 @@ async function addMessage(req, res) {
   const userName = req.body.author;
   const newMessage = req.body.message;
   //   db.push({ text: newMessage, user: userName, added: new Date() });
-  await newDB.addMessageToDB(userName, newMessage);
+  await db.addMessageToDB(userName, newMessage);
   res.redirect("/");
 }
 
@@ -41,7 +28,7 @@ async function viewMessage(req, res) {
   //   const user = messageToView.user;
   //   const text = messageToView.text;
   //   const added = messageToView.added;
-  const messageToShow = await newDB.viewMessageByID(arrayPosition);
+  const messageToShow = await db.viewMessageByID(arrayPosition);
   const user = messageToShow[0].user;
   const text = messageToShow[0].text;
   const added = messageToShow[0].added;
