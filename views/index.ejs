@@ -11,7 +11,7 @@
     <% const text=message.text%>
     <% const added=message.added%>
         <%- include('message', { user: user, text:text, added:added})%>
-    <a href="./view-message/<%=(index + 1)%>">Open Message</a>
+    <a href="./view-message/<%=message.id%>">Open Message</a>
    <% })%>
    <a href="./new">Post new message</a>
 </body>
